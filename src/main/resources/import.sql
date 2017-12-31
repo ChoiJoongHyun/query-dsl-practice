@@ -11,6 +11,3 @@ INSERT INTO ARTICLE (idx, user_idx, content) VALUES(5, 1, '내용5');
 INSERT INTO ARTICLE (idx, user_idx, content) VALUES(6, 2, '내용6');
 INSERT INTO ARTICLE (idx, user_idx, content) VALUES(7, 2, '내용7');
 INSERT INTO ARTICLE (idx, user_idx, content) VALUES(8, 2, '내용8');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(9, 3, '내용9');
-
-

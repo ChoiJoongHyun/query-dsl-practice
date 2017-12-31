@@ -1,6 +1,7 @@
 package dotori.example.querydsl.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "USER")
 public class User {
 

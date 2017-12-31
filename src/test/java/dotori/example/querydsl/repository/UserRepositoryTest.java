@@ -2,6 +2,7 @@ package dotori.example.querydsl.repository;
 
 
 import dotori.example.querydsl.domain.*;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,14 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void 테스트() throws Exception {
-        User user = userRepository.findByIdx(1L);
+    public void user_단일조회_article_포함() throws Exception {
+        User user = userRepository.findWithArticleByIdx(1L);
+        Assert.assertNotNull(user.getArticles());
+    }
+
+    @Test
+    public void user_모두조회_article_포함() throws Exception {
+        List<User> users = userRepository.findWithArticle();
+        Assert.assertEquals(users.size(), 3);
     }
 }
