@@ -10,7 +10,13 @@ import java.util.List;
 public interface UserRepositoryCustom {
     User findByIdx(Long idx);
 
+
     User findWithArticleByIdx(Long idx);
+    List<User> findListWithArticleByIdx(Long idx);
+
+
 
     List<User> findWithArticle();
+
+    List<User> findWithArticleByIdxIn(List<Long> idxList);
 }
