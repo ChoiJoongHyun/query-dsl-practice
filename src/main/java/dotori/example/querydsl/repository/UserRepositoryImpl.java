@@ -1,7 +1,9 @@
 package dotori.example.querydsl.repository;
 
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import dotori.example.querydsl.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
@@ -13,17 +15,59 @@ import static dotori.example.querydsl.domain.QArticle.article;
  */
 public class UserRepositoryImpl extends QueryDslRepositorySupport implements UserRepositoryCustom {
 
-    public UserRepositoryImpl() {
+    private JPAQueryFactory queryFactory;
+
+    @Autowired
+    public UserRepositoryImpl(JPAQueryFactory queryFactory) {
         super(User.class);
+        this.queryFactory = queryFactory;
     }
 
+    @Override
+    public User findByIdxQueryFactory(Long idx) {
+        return this.queryFactory.selectFrom(user)
+                .innerJoin(user.articles, article)
+                .fetchJoin()
+                .where(user.idx.eq(idx))
+                .fetchOne();
+    }
 
     @Override
+    public User findWithArticleByIdxAndCategoryQueryFactory(Long idx, String category) {
+        return null;
+        //return from(user).select(user.idx).distinct().fetch();
+        //return this.queryFactory.select()
+        /*return this.queryFactory.selectFrom(user)
+                .innerJoin(user.articles, article)
+                .fetchJoin()
+                .where(user.idx.eq(idx)
+                        .and(article.category.eq(category)))
+                .fetchOne();*/
+    }
+
+    /*@Override
     public User findByIdx(Long idx) {
         return from(user)
                 .where(user.idx.eq(idx))
                 .fetchOne();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public List<User> findListWithArticleByIdx(Long idx) {
@@ -60,5 +104,5 @@ public class UserRepositoryImpl extends QueryDslRepositorySupport implements Use
                 .fetchJoin()
                 .where(user.idx.in(idxList))
                 .fetch();
-    }
+    }*/
 }

@@ -24,6 +24,9 @@ public class Article {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "category")
+    private String category;
+
     /*@OneToOne(mappedBy = "article")
     @JoinColumn(name = "idx", insertable = false, updatable = false)
     private ArticleLikeCount articleLikeCount;*/

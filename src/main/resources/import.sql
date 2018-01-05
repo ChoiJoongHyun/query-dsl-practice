@@ -3,14 +3,14 @@ INSERT INTO USER (idx, user_id, password, name, email) VALUES (2, 'dakim', 'pwd2
 INSERT INTO USER (idx, user_id, password, name, email) VALUES (3, 'jangsi', 'pwd3', '장시후', 'tlgn@gmail.com');
 
 
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(1, 1, '내용1');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(2, 1, '내용2');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(3, 1, '내용3');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(4, 1, '내용4');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(5, 1, '내용5');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(6, 2, '내용6');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(7, 2, '내용7');
-INSERT INTO ARTICLE (idx, user_idx, content) VALUES(8, 2, '내용8');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(1, 1, '내용1', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(2, 1, '내용2', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(3, 1, '내용3', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(4, 1, '내용4', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(5, 1, '내용5', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(6, 1, '내용6', '01');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(7, 1, '내용7', '02');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(8, 1, '내용8', '02');
 
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(1, 2);
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(2, 2);
