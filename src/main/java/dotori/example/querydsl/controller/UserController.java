@@ -24,9 +24,17 @@ public class UserController {
     }
 
     @GetMapping("/{idx}")
-    public User getUser(final @PathVariable Long idx) {
-        //return userRepository.findByIdx(idx);
-        return null;
+    public UserResponse getUser(final @PathVariable Long idx) {
+        User user =  userRepository.findByIdx(idx);
+
+        return UserResponse.builder()
+                .idx(user.getIdx())
+                .email(user.getEmail())
+                .userId(user.getUserId())
+                .name(user.getName())
+                .password(user.getPassword())
+                .build();
+
     }
 
     @GetMapping("/test/{idx}")

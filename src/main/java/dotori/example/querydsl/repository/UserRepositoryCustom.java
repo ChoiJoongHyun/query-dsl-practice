@@ -8,6 +8,7 @@ import java.util.List;
  * Created by joonghyun on 2017. 12. 30..
  */
 public interface UserRepositoryCustom {
+    User findByIdx(Long idx);
     User findByIdxQueryFactory(Long idx);
 
     User findWithArticleByIdxAndCategoryQueryFactory(Long idx, String category);

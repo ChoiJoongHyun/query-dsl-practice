@@ -24,6 +24,11 @@ public class UserRepositoryImpl extends QueryDslRepositorySupport implements Use
     }
 
     @Override
+    public User findByIdx(Long idx) {
+        return from(user).where(user.idx.eq(idx)).fetchOne();
+    }
+
+    @Override
     public User findByIdxQueryFactory(Long idx) {
         return this.queryFactory.selectFrom(user)
                 .innerJoin(user.articles, article)
