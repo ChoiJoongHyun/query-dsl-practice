@@ -1,12 +1,9 @@
 package dotori.example.querydsl.repository;
 
-
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import dotori.example.querydsl.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
-
-import java.util.List;
 
 import static dotori.example.querydsl.domain.QUser.user;
 import static dotori.example.querydsl.domain.QArticle.article;
@@ -39,15 +36,15 @@ public class UserRepositoryImpl extends QueryDslRepositorySupport implements Use
 
     @Override
     public User findWithArticleByIdxAndCategoryQueryFactory(Long idx, String category) {
-        return null;
+
         //return from(user).select(user.idx).distinct().fetch();
         //return this.queryFactory.select()
-        /*return this.queryFactory.selectFrom(user)
+        return this.queryFactory.selectFrom(user)
                 .innerJoin(user.articles, article)
                 .fetchJoin()
                 .where(user.idx.eq(idx)
                         .and(article.category.eq(category)))
-                .fetchOne();*/
+                .fetchOne();
     }
 
     /*@Override
