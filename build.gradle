@@ -60,4 +60,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
     compile 'com.querydsl:querydsl-apt:4.1.4'
     compile 'com.querydsl:querydsl-jpa:4.1.4'
+
+	compile("com.zaxxer:HikariCP")
 }
