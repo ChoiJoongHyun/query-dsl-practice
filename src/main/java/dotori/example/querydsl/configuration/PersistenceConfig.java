@@ -14,27 +14,22 @@
 package dotori.example.querydsl.configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.hibernate.jpa.AvailableSettings;
-import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.omg.CORBA.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
-@PropertySource(value = { "classpath:jdbc.properties" })
-@EnableTransactionManagement
+//@PropertySource(value = { "classpath:jdbc.properties" })
+//@EnableTransactionManagement
+@EntityScan(basePackages = "dotori.example.querydsl.domain")
+@EnableJpaRepositories
 public class PersistenceConfig {
 
     //private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
@@ -45,7 +40,7 @@ public class PersistenceConfig {
     private static final String[] ENTITYMANAGER_PACKAGES_TO_SCAN = {"dotori.example.querydsl.domain"};
 
 
-
+    @Primary
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         HikariDataSource dataSource = new HikariDataSource();
@@ -56,6 +51,7 @@ public class PersistenceConfig {
         return dataSource;
     }
 
+    @Primary
     @Bean
     public JpaTransactionManager jpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -63,26 +59,35 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
-    private HibernateJpaVendorAdapter vendorAdaptor() {
+
+
+    /*private HibernateJpaVendorAdapter vendorAdaptor() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setShowSql(true);
         return vendorAdapter;
-    }
+    }*/
 
+    @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-
+        /*return builder
+                .dataSource(dataSource())
+                .packages("dotori.example.querydsl.domain")
+                .persistenceUnit("social")
+                .build();*/
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());
+        //entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        entityManagerFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
-        entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
+        entityManagerFactoryBean.setPackagesToScan("dotori.example.querydsl.domain");
+        entityManagerFactoryBean.setPersistenceUnitName("querydsl");
+        //entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        //entityManagerFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
+        //entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
 
         return entityManagerFactoryBean;
     }
 
-    private Properties jpaHibernateProperties() {
+    /*private Properties jpaHibernateProperties() {
 
         Properties properties = new Properties();
 
@@ -94,6 +99,6 @@ public class PersistenceConfig {
         properties.put(AvailableSettings.SCHEMA_GEN_DATABASE_ACTION, "none");
         properties.put(AvailableSettings.USE_CLASS_ENHANCER, "false");
         return properties;
-    }
+    }*/
 
 }

@@ -4,10 +4,7 @@ import dotori.example.querydsl.domain.User;
 import dotori.example.querydsl.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
@@ -22,6 +19,21 @@ public class UserController {
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    @PutMapping("/{idx}")
+    public UserResponse updateUser(final @PathVariable Long idx) {
+
+        User user = new User();
+        user.setIdx(idx);
+
+        userRepository.save(user);
+
+        return UserResponse.builder()
+                .idx(100L)
+                .name("test")
+                .build();
+    }
+
 
     @GetMapping("/{idx}")
     public UserResponse getUser(final @PathVariable Long idx) {
