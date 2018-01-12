@@ -14,3 +14,10 @@ INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(8, 1, '내용8', '
 
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(1, 2);
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(2, 2);
+
+INSERT INTO CATEGORY (idx, code) VALUES(1, '01');
+INSERT INTO CATEGORY (idx, code) VALUES(2, '02');
+
+INSERT INTO ARTICLE_CATEGORY (idx, category_idx) VALUES(1, 1);
+INSERT INTO ARTICLE_CATEGORY (idx, category_idx) VALUES(1, 2);
+INSERT INTO ARTICLE_CATEGORY (idx, category_idx) VALUES(2, 1);
