@@ -14,14 +14,11 @@
 package dotori.example.querydsl.domain;
 
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "ARTICLE_LIKE_COUNT")
 public class ArticleLikeCount {
 
