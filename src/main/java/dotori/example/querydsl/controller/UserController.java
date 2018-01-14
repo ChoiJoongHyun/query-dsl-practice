@@ -23,10 +23,7 @@ public class UserController {
     @PutMapping("/{idx}")
     public UserResponse updateUser(final @PathVariable Long idx) {
 
-        User user = new User();
-        user.setIdx(idx);
 
-        userRepository.save(user);
 
         return UserResponse.builder()
                 .idx(100L)
