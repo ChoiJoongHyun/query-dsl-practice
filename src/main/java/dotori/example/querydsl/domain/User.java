@@ -29,8 +29,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Article> articles;
 }

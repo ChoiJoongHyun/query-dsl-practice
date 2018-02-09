@@ -5,6 +5,9 @@ import dotori.example.querydsl.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static dotori.example.querydsl.domain.QUser.user;
 import static dotori.example.querydsl.domain.QArticle.article;
 /**
@@ -12,13 +15,66 @@ import static dotori.example.querydsl.domain.QArticle.article;
  */
 public class UserRepositoryImpl extends QueryDslRepositorySupport implements UserRepositoryCustom {
 
-    private JPAQueryFactory queryFactory;
+    private final JPAQueryFactory queryFactory;
 
     @Autowired
     public UserRepositoryImpl(JPAQueryFactory queryFactory) {
         super(User.class);
         this.queryFactory = queryFactory;
     }
+
+    /**
+     * user left join article
+     * */
+    @Override
+    public List<User> findWithArticle() {
+        return this.queryFactory.select(user)
+                .from(user)
+                .leftJoin(user.articles, article)
+                .fetch();
+    }
+
+    /**
+     * user left join article
+     * stream 으로 중복제거
+     * */
+    @Override
+    public List<User> findWithArticle_streamDistinct() {
+        return this.queryFactory.select(user)
+                .from(user)
+                .leftJoin(user.articles, article)
+                .fetch().stream().distinct().collect(Collectors.toList());
+    }
+
+    /**
+     * user left join article
+     * selectDistinct 으로 중복제거
+     * */
+    @Override
+    public List<User> findWithArticle_selectDistinct() {
+        return this.queryFactory.selectDistinct(user)
+                .from(user)
+                .leftJoin(user.articles, article)
+                .fetch();
+    }
+
+    /**
+     * user left fetch join article
+     * */
+    @Override
+    public List<User> findWithArticle_fetchJoin() {
+        return this.queryFactory.select(user)
+                .from(user)
+                .leftJoin(user.articles, article)
+                .fetchJoin()
+                .fetch();
+    }
+
+
+
+
+
+
 
     @Override
     public User findByIdx(Long idx) {

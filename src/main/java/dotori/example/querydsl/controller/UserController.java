@@ -15,6 +15,7 @@ public class UserController {
 
     private final UserRepository userRepository;
 
+
     @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -22,9 +23,6 @@ public class UserController {
 
     @PutMapping("/{idx}")
     public UserResponse updateUser(final @PathVariable Long idx) {
-
-
-
         return UserResponse.builder()
                 .idx(100L)
                 .name("test")

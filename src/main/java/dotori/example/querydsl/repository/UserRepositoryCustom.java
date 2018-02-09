@@ -8,6 +8,12 @@ import java.util.List;
  * Created by joonghyun on 2017. 12. 30..
  */
 public interface UserRepositoryCustom {
+    List<User> findWithArticle();
+    List<User> findWithArticle_fetchJoin();
+
+    List<User> findWithArticle_streamDistinct();
+    List<User> findWithArticle_selectDistinct();
+
     User findByIdx(Long idx);
     User findByIdxQueryFactory(Long idx);
 
