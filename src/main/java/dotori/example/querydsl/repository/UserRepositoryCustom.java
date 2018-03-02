@@ -12,4 +12,7 @@ public interface UserRepositoryCustom {
 
     List<User> findWithArticle_streamDistinct();
     List<User> findWithArticle_selectDistinct();
+
+    List<User> findWithArticle_fetch_join();
+    List<User> findWithArticle_not_fetch_join();
 }

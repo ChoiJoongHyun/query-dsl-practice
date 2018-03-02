@@ -26,17 +26,13 @@ public class Article {
     @Column(name = "category")
     private String category;
 
-    /*@OneToOne(mappedBy = "article")
-    @JoinColumn(name = "idx", insertable = false, updatable = false)
-    private ArticleLikeCount articleLikeCount;*/
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_idx", insertable = false, updatable = false)
     private User user;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name="ARTICLE_CATEGORY",
             joinColumns=@JoinColumn(name="article_idx", referencedColumnName="idx"),
             inverseJoinColumns=@JoinColumn(name="category_idx", referencedColumnName="idx"))
-    private List<Category> categorys;
+    private List<Category> categorys;*/
 }

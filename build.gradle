@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '1.5.10.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -61,5 +61,5 @@ dependencies {
     compile 'com.querydsl:querydsl-apt:4.1.4'
     compile 'com.querydsl:querydsl-jpa:4.1.4'
 
-	compile("com.zaxxer:HikariCP")
+	//compile("com.zaxxer:HikariCP")
 }

@@ -57,4 +57,22 @@ public class UserRepositoryImpl extends QueryDslRepositorySupport implements Use
                 .leftJoin(user.articles, article)
                 .fetch();
     }
+
+
+    @Override
+    public List<User> findWithArticle_fetch_join() {
+        return this.queryFactory.selectFrom(user)
+                .leftJoin(user.articles, article)
+                .fetchJoin()
+                .limit(2)
+                .fetch();
+    }
+
+    @Override
+    public List<User> findWithArticle_not_fetch_join() {
+        return this.queryFactory.selectFrom(user)
+                .leftJoin(user.articles, article)
+                .limit(2)
+                .fetch();
+    }
 }

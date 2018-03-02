@@ -23,7 +23,7 @@ public class UserRepositoryTest {
     @Test
     public void user_left_join_article() {
         List<User> users = userRepository.findWithArticle();
-        Assert.assertEquals(3, users.size());
+        Assert.assertEquals(8, users.size());
     }
 
     @Test
@@ -31,5 +31,12 @@ public class UserRepositoryTest {
         int selectDistinctSize = userRepository.findWithArticle_selectDistinct().size();
         int streamDistinctSize = userRepository.findWithArticle_streamDistinct().size();
         Assert.assertEquals(selectDistinctSize, streamDistinctSize);
+    }
+
+    @Test
+    public void oneToMany_관계시_fetch_join_사용후_limit_쿼리확인() {
+        List<User> users_1 = userRepository.findWithArticle_fetch_join();
+        List<User> users_2 = userRepository.findWithArticle_not_fetch_join();
+        Assert.assertEquals(users_1.size(), users_2.size());
     }
 }

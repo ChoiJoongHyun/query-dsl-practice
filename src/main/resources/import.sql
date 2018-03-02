@@ -10,7 +10,7 @@ INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(4, 1, '내용4', '
 INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(5, 2, '내용5', '01');
 INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(6, 2, '내용6', '01');
 INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(7, 3, '내용7', '02');
-INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(8, 3, '내용8', '02');
+INSERT INTO ARTICLE (idx, user_idx, content, category) VALUES(8, 3, '내용88', '02');
 
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(1, 2);
 INSERT INTO ARTICLE_LIKE_COUNT (article_idx, count) VALUES(2, 2);
