@@ -29,10 +29,4 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_idx", insertable = false, updatable = false)
     private User user;
-
-    /*@ManyToMany
-    @JoinTable(name="ARTICLE_CATEGORY",
-            joinColumns=@JoinColumn(name="article_idx", referencedColumnName="idx"),
-            inverseJoinColumns=@JoinColumn(name="category_idx", referencedColumnName="idx"))
-    private List<Category> categorys;*/
 }

@@ -15,4 +15,6 @@ public interface UserRepositoryCustom {
 
     List<User> findWithArticle_fetch_join();
     List<User> findWithArticle_not_fetch_join();
+
+
 }

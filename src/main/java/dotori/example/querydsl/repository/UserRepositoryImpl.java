@@ -3,7 +3,6 @@ package dotori.example.querydsl.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import dotori.example.querydsl.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,13 +12,12 @@ import static dotori.example.querydsl.domain.QUser.user;
 /**
  * Created by joonghyun on 2017. 12. 30..
  */
-public class UserRepositoryImpl extends QueryDslRepositorySupport implements UserRepositoryCustom {
+public class UserRepositoryImpl implements UserRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
     @Autowired
     public UserRepositoryImpl(JPAQueryFactory queryFactory) {
-        super(User.class);
         this.queryFactory = queryFactory;
     }
 
